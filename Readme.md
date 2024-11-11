@@ -3,7 +3,7 @@ The system consists of several Docker containers managed through Terraform. The 
 <ol>
     <li> <em><strong>K6</em></strong> for load testing. </li>
     <li> <em><strong>InfluxDB</em></strong> for storing performance metrics </li>
-    <li> <em><strong>Grafana<</em></strong> for visualizing metrics. </li>
+    <li> <em><strong>Grafana</em></strong> for visualizing metrics. </li>
     <li> <em><strong>WireMock</em></strong> for mocking API responses. </li>
     <li> <em><strong>MongoDB</em></strong> for data storage. </li>
     <li> <em><strong>Chronograf</em></strong> for querying and visualizing data in InfluxDB. </li>
@@ -51,9 +51,9 @@ Hardware Requirements
 
 # Step-by-Step Deployment
 1. Initialize the Terraform Project
-
-<p> terraform init </p>
-
+```
+terraform init 
+```
 2. Define the Networks
 <p>
 resource "docker_network" "k6" {
