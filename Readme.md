@@ -67,10 +67,11 @@ resource "docker_network" "grafana" {
 
 3. Deploy InfluxDB
  
-```resource "docker_image" "influxdb" {
+```
+resource "docker_image" "influxdb" {
   name = "influxdb:1.8"
   keep_locally = false
-}
+  }
 resource "docker_container" "influxdb" {
   name    = "influxdb"
   image   = docker_image.influxdb.name
@@ -87,16 +88,16 @@ resource "docker_container" "influxdb" {
   env = [
     "INFLUXDB_DB=k6"
   ]
-}```
+}
+```
 
 4. Deploy Grafana
-
+```
 resource "docker_image" "grafana" {
   name = "grafana/grafana:8.5.21"
   keep_locally = false
-}
-
-```resource "docker_container" "grafana" {
+  }
+resource "docker_container" "grafana" {
   name    = "grafana"
   image   = docker_image.grafana.name
   networks_advanced {
@@ -118,11 +119,12 @@ resource "docker_image" "grafana" {
   volumes {
     host_path      = var.grafana_dashboard_path
     container_path = "/var/lib/grafana/dashboards"   
-  }```
+  }
+  ```
 
  <em><strong> Optional step if you don’t have dashboard use id in import dashboard 2587 </strong></em>
-
-```  volumes {
+```
+volumes {
     host_path      = var.grafana_dashboard_yaml
     container_path = "/etc/grafana/provisioning/dashboards/dashboard.yaml"
   }
@@ -131,12 +133,12 @@ resource "docker_image" "grafana" {
     host_path      = var.grafana_datasource_path
     container_path = "/etc/grafana/provisioning/datasources/datasource.yaml"
   }
-}```
+}```    
 
 
 5. Deploy Chronograf
-
-```resource "docker_image" "chronograf" {
+```
+resource "docker_image" "chronograf" {
   name = "chronograf:1.8"
   keep_locally = false
 }
@@ -164,12 +166,13 @@ resource "docker_container" "chronograf" {
   depends_on = [
     docker_container.influxdb
   ]
-}```
-
+}
+```
 
 6. Deploy K6 Load Testing
 
-```resource "docker_image" "k6" {
+```
+resource "docker_image" "k6" {
   name = "grafana/k6"
   keep_locally = false
 }
@@ -195,7 +198,8 @@ resource "docker_container" "k6" {
     container_path = "/scripts/load-test.js"
   }
   command = ["run", "/scripts/load-test.js"]
-}```
+}
+```
 
 7. Deploy WireMock
 ```
@@ -218,7 +222,8 @@ resource "docker_container" "wiremock" {
     host_path      = var.wiremock_mappings_path
     container_path = "/home/wiremock/mappings"
   }
-}```
+}
+```
 
 8. Deploy MongoDB
 ```
@@ -243,13 +248,14 @@ resource "docker_container" "mongodb" {
     host_path      = var.mongodb_data_path
     container_path = "/data/db"
   }
-}```
+}
+```
 
 9. Also Create terraform.tfvars and variables.tf file at the same location where the main.tf is for achiving the terraform best practices.
 
 <em><strong> Folder structure </em></strong>
-
-m```ain.tf
+```
+main.tf
 terraform.tfvars
 variables.tf
 scripts
@@ -261,7 +267,8 @@ load
 grafana
 -- dashboards
 ---- dashboard.yaml  # optional
--- datasource.yaml```
+-- datasource.yaml
+```
 
 10. Plan and Apply the Terraform Configuration
 Once the configuration is ready, deploy the infrastructure by running:
@@ -271,13 +278,19 @@ terraform apply
 ```
 
 11. Check for the docker containers are running and what ports are they exposed to
-``` docker ps -a --> to see the containers in full details ```
+``` 
+docker ps -a  # to see the containers in full details 
+```
 
 12. Check the logs for the k6 container to see if the load test is working fine or not
-```docker logs <k6_container_id> ```
+```
+docker logs <k6_container_id>
+```
 
 13. Go to browser and access the grafana by using port 3000.
-```http:<ip_address>:<port>``` 
+```
+http:<ip_address>:<port>
+``` 
 
 14. The data source is already added as influxdb as it is configured into our <em><strong> main.tf </em></strong>
 
@@ -289,8 +302,10 @@ terraform apply
 17. After sucessfull testing the container will auto exist because we will not be needing it anymore.
 
 18. You can again start the container and run a load test manually to see the results again.
-```docker start <container_id>
-docker exec -it k6 k6 run /scripts/load-test.js```
+```
+docker start <container_id>
+docker exec -it k6 k6 run /scripts/load-test.js
+```
 (note: our k6 script (load-test.js) should be mounted into the k6 container at /scripts/load-test.js.)
 
 19. To setup an alerts in grafana
