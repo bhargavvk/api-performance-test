@@ -120,12 +120,9 @@ resource "docker_container" "grafana" {
     host_path      = var.grafana_dashboard_path
     container_path = "/var/lib/grafana/dashboards"   
   }
-  ```
-
- <em><strong> Optional step if you don’t have dashboard use id in import dashboard 2587 </strong></em>
-```
+  
 volumes {
-    host_path      = var.grafana_dashboard_yaml
+    host_path      = var.grafana_dashboard_yaml                              # Optional step if you don’t have dashboard use id in import dashboard 2587
     container_path = "/etc/grafana/provisioning/dashboards/dashboard.yaml"
   }
 
