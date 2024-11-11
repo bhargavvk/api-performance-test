@@ -1,12 +1,12 @@
 # System Architecture Overview
 The system consists of several Docker containers managed through Terraform. The architecture includes:
 <ol>
-    <li> **K6** for load testing. </li>
-    <li> **InfluxDB** for storing performance metrics </li>
-    <li> **Grafana** for visualizing metrics. </li>
-    <li> **WireMock** for mocking API responses. </li>
-    <li> **MongoDB** for data storage. </li>
-    <li> **Chronograf** for querying and visualizing data in InfluxDB. </li>
+    <li> <em><strong>K6</em></strong> for load testing. </li>
+    <li> <em><strong>InfluxDB</em></strong> for storing performance metrics </li>
+    <li> <em><strong>Grafana<</em></strong> for visualizing metrics. </li>
+    <li> <em><strong>WireMock</em></strong> for mocking API responses. </li>
+    <li> <em><strong>MongoDB</em></strong> for data storage. </li>
+    <li> <em><strong>Chronograf</em></strong> for querying and visualizing data in InfluxDB. </li>
 </ol>
 Each component is interconnected, simulating an environment where load tests run on an API that connects to a mocked external service (OpenMeteo) and MongoDB for storage.
 
