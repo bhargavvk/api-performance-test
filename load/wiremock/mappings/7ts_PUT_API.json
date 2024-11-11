@@ -1,0 +1,10 @@
+{
+    "request": {
+      "method": "PUT",
+      "url": "/chatbot/gam/knowledge_base/997284e0-4ba1-4600-a6e1-8fefebd942d7"
+    },
+    "response": {
+      "status": 200,
+      "body": "{\"id\":\"997284e0-4ba1-4600-a6e1-8fefebd942d7\",\"org_id\":\"18818\",\"name\":\"Org18818\",\"is_soft_deleted\":false,\"status\":\"updated\",\"status_details\":\"Updated Entry\",\"created_by\":\"ee9aee88-2c96-455a-b7d4-1e20e228c671\",\"created_date\":\"2024-09-10T17:37:54.379729Z\",\"updated_by\":\"ee9aee88-2c96-455a-b7d4-1e20e228c671\",\"updated_date\":\"2024-09-11T05:40:55.679069Z\",\"knowledge_base_sources\":[{\"id\":\"e7d85f7f-fa3a-4c6c-9097-1f3a0ec21363\",\"knowledge_base_id\":\"997284e0-4ba1-4600-a6e1-8fefebd942d7\",\"type\":\"url\",\"source_location\":\"https://7targets.ai/help/getting-started/create-your-assistant/\",\"status\":\"created\",\"status_details\":\"Created Entry\",\"filter_in_pattern\":null,\"is_soft_deleted\":false}]}"
+    }
+}

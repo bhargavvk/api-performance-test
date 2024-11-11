@@ -1,0 +1,11 @@
+{
+    "request": {
+      "method": "POST",
+      "url": "chatbot/gam/knowledge_base"
+    },
+    "response": {
+      "status": 200,
+      "body": "{\"id\":\"8c9acae9-375d-4bfe-91d6-33fc3f1a75eb\",\"org_id\":\"909\",\"name\":\"7tskb\",\"is_soft_deleted\":false,\"status\":\"created\",\"status_details\":\"Created Entry\",\"created_by\":\"ee9aee88-2c96-455a-b7d4-1e20e228c671\",\"created_date\":\"2024-09-10T17:39:08.659989Z\",\"updated_by\":\"ee9aee88-2c96-455a-b7d4-1e20e228c671\",\"updated_date\":\"2024-09-10T17:39:08.659989Z\",\"knowledge_base_sources\":[{\"id\":\"c1296133-dd7e-4197-86fc-a98561418621\",\"knowledge_base_id\":\"8c9acae9-375d-4bfe-91d6-33fc3f1a75eb\",\"type\":\"url\",\"source_location\":\"https://7targets.ai/help/getting-started/create-your-assistant/\",\"status\":\"created\",\"status_details\":\"Created Entry\",\"filter_in_pattern\":null,\"is_soft_deleted\":false}]}"
+
+  }
+}
