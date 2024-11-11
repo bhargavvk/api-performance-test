@@ -1,39 +1,57 @@
 # System Architecture Overview
 The system consists of several Docker containers managed through Terraform. The architecture includes:
-    • **K6** for load testing.
-    • **InfluxDB** for storing performance metrics.
-    • **Grafana** for visualizing metrics.
-    • **WireMock** for mocking API responses.
-    • **MongoDB** for data storage.
-    • **Chronograf** for querying and visualizing data in InfluxDB.
+<ol>
+    <li> **K6** for load testing. </li>
+    <li> **InfluxDB** for storing performance metrics </li>
+    <li> **Grafana** for visualizing metrics. </li>
+    <li> **WireMock** for mocking API responses. </li>
+    <li> **MongoDB** for data storage. </li>
+    <li> **Chronograf** for querying and visualizing data in InfluxDB. </li>
+</ol>
 Each component is interconnected, simulating an environment where load tests run on an API that connects to a mocked external service (OpenMeteo) and MongoDB for storage.
+
 # System Requirements
 Hardware Requirements
-    • Minimum 8 GB RAM.
-    • Multi-core CPU (Intel i5 or higher recommended).
-    • 20 GB of available storage.
+<ol>
+    <li> Minimum 8 GB RAM. </li> 
+    <li> Multi-core CPU (Intel i5 or higher recommended). </li>
+    <li> 20 GB of available storage. </li>
+</ol>
+
 # Software Requirements
-    • Operating System: Ubuntu 18.04+ or equivalent Linux distribution (with Docker support).
-    • Docker: Version 20.10.x or later.
-    • Terraform: Version 0.14 or later.
-    • Influxdb: Version 1.8
-    • Cronograf: Version 1.8
-    • Grafana: Version 8.5.x or later 
-    • Docker Compose: Optional but recommended for local testing.
+<ol>
+    <li> Operating System: Ubuntu 18.04+ or equivalent Linux distribution (with Docker support). </li>
+    <li> Docker: Version 20.10.x or later. </li>
+    <li> Terraform: Version 0.14 or later. </li>
+    <li> Influxdb: Version 1.8 </li>
+    <li> Cronograf: Version 1.8 </li>
+    <li> Grafana: Version 8.5.x or later </li>
+    <li> Docker Compose: Optional but recommended for local testing. </li>
+</ol>
+
 # Network Requirements
-    • Open ports: 8086 (InfluxDB), 3000 (Grafana), 8888 (Chronograf), 6566 (K6), 8080 (WireMock), 27017 (MongoDB).
-    • Reliable internet connection for downloading Docker images and dependencies.
+<ol>
+    <li> Open ports: 8086 (InfluxDB), 3000 (Grafana), 8888 (Chronograf), 6566 (K6), 8080 (WireMock), 27017 (MongoDB). </li>
+    <li> Reliable internet connection for downloading Docker images and dependencies.</li>
+</ol>    
+
 # Prerequisites
-    1. Install Docker Follow the official Docker installation guide for your operating system.
-    2. Install Terraform Download and install Terraform by following the Terraform installation guide.
-    3. Install Docker Compose (Optional but useful for testing) Install Docker Compose using the instructions here.
-    4. Create Required Directories
-        ◦ /home/aaic/api-performance/scripts/: Load test script (test.js) location.
-        ◦ /home/aaic/api-performance/load/wiremock/mappings: WireMock mappings for mock responses.
-        ◦ /home/aaic/api-performance/grafana/: Grafana configuration, including custom dashboards and datasources.
-    5. Load Test and WireMock Mapping Files Ensure that you have the necessary K6 load test script (load-test.js) and WireMock mappings available in the correct directories.
+<ol>
+    <li> Install Docker Follow the official Docker installation guide for your operating system. </li>
+    <li> Install Terraform Download and install Terraform by following the Terraform installation guide. </li>
+    <li> Install Docker Compose (Optional but useful for testing) Install Docker Compose using the instructions here. </li>
+    <li> Create Required Directories
+    <ul>
+        <li> /home/aaic/api-performance/scripts/: Load test script (test.js) location. </li>
+        <li> /home/aaic/api-performance/load/wiremock/mappings: WireMock mappings for mock responses.</li>
+        <li> /home/aaic/api-performance/grafana/: Grafana configuration, including custom dashboards and datasources.</li>
+    </ul>
+    <li> Load Test and WireMock Mapping Files Ensure that you have the necessary K6 load test script (load-test.js) and WireMock mappings available in the correct directories.</li>
+</ol>
+
 # Step-by-Step Deployment
 1. Initialize the Terraform Project
+
 <p> terraform init </p>
 
 2. Define the Networks
