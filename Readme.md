@@ -11,14 +11,15 @@ The system consists of several Docker containers managed through Terraform. The 
 Each component is interconnected, simulating an environment where load tests run on an API that connects to a mocked external service (OpenMeteo) and MongoDB for storage.
 
 # System Requirements
-Hardware Requirements
+
+## Hardware Requirements
 <ol>
     <li> Minimum 8 GB RAM. </li> 
     <li> Multi-core CPU (Intel i5 or higher recommended). </li>
     <li> 20 GB of available storage. </li>
 </ol>
 
-# Software Requirements
+## Software Requirements
 <ol>
     <li> Operating System: Ubuntu 18.04+ or equivalent Linux distribution (with Docker support). </li>
     <li> Docker: Version 20.10.x or later. </li>
@@ -29,13 +30,13 @@ Hardware Requirements
     <li> Docker Compose: Optional but recommended for local testing. </li>
 </ol>
 
-# Network Requirements
+## Network Requirements
 <ol>
     <li> Open ports: 8086 (InfluxDB), 3000 (Grafana), 8888 (Chronograf), 6566 (K6), 8080 (WireMock), 27017 (MongoDB). </li>
     <li> Reliable internet connection for downloading Docker images and dependencies.</li>
 </ol>    
 
-# Prerequisites
+## Prerequisites
 <ol>
     <li> Install Docker Follow the official Docker installation guide for your operating system. </li>
     <li> Install Terraform Download and install Terraform by following the Terraform installation guide. </li>
@@ -49,12 +50,14 @@ Hardware Requirements
     <li> Load Test and WireMock Mapping Files Ensure that you have the necessary K6 load test script (load-test.js) and WireMock mappings available in the correct directories.</li>
 </ol>
 
-# Step-by-Step Deployment
+## Step-by-Step Deployment
 1. Initialize the Terraform Project
+
 ```
 terraform init 
 ```
 2. Define the Networks
+
 ```
 resource "docker_network" "k6" {
   name = "k6"
@@ -62,7 +65,6 @@ resource "docker_network" "k6" {
 resource "docker_network" "grafana" {
   name = "grafana"
 }
-
 ```
 
 3. Deploy InfluxDB
@@ -92,6 +94,7 @@ resource "docker_container" "influxdb" {
 ```
 
 4. Deploy Grafana
+
 ```
 resource "docker_image" "grafana" {
   name = "grafana/grafana:8.5.21"
@@ -120,7 +123,7 @@ resource "docker_container" "grafana" {
     host_path      = var.grafana_dashboard_path
     container_path = "/var/lib/grafana/dashboards"   
   }
-  
+
 volumes {
     host_path      = var.grafana_dashboard_yaml                              # Optional step if you don’t have dashboard use id in import dashboard 2587
     container_path = "/etc/grafana/provisioning/dashboards/dashboard.yaml"
@@ -130,10 +133,11 @@ volumes {
     host_path      = var.grafana_datasource_path
     container_path = "/etc/grafana/provisioning/datasources/datasource.yaml"
   }
-}```    
-
+}
+```    
 
 5. Deploy Chronograf
+
 ```
 resource "docker_image" "chronograf" {
   name = "chronograf:1.8"
@@ -199,6 +203,7 @@ resource "docker_container" "k6" {
 ```
 
 7. Deploy WireMock
+
 ```
 resource "docker_image" "wiremock" {
   name = "rodolpheche/wiremock"
@@ -223,6 +228,7 @@ resource "docker_container" "wiremock" {
 ```
 
 8. Deploy MongoDB
+
 ```
 resource "docker_image" "mongodb" {
   name = "mongo"
@@ -249,8 +255,8 @@ resource "docker_container" "mongodb" {
 ```
 
 9. Also Create terraform.tfvars and variables.tf file at the same location where the main.tf is for achiving the terraform best practices.
-
 <em><strong> Folder structure </em></strong>
+
 ```
 main.tf
 terraform.tfvars
